@@ -11,6 +11,7 @@ let favoritesKey = "Favorites"
 
 class ApiHomeViewModel {
     
+    // MARK: - Variables
     var date: String?
     var title: String?
     var explanation: String?
@@ -19,28 +20,7 @@ class ApiHomeViewModel {
     let cache = NSCache<NSString, APIServiceResponse>()
     var queryDate : NSString?
     
-    func updateQueryDate(queryDate: Date) {
-        
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = GlobalConstants.ApodDateFormat
-        let dateString = dateFormatter.string(from: queryDate)
-        self.queryDate = dateString as NSString
-    }
-    
-    //Modify business logic here if needed
-    func updateResponse(ApiResponse:APIServiceResponse) {
-        
-        self.date = ApiResponse.date
-        self.title = ApiResponse.title
-        self.explanation = ApiResponse.explanation
-        self.url = ApiResponse.url
-        if(ApiResponse.media_type == GlobalConstants.MediaTypeImage) {
-            self.media_type = .image
-        }else {
-            self.media_type = .video
-        }
-    }
-    
+    // MARK: - API Call
     // API Call
     func callApodApi(queryDate: Date, completion : @escaping (_ isSuccess: Bool,_ error:String?) -> Void) {
         
@@ -73,6 +53,28 @@ class ApiHomeViewModel {
                 // Also Return Error
                 _ = completion(false,error)
             }
+        }
+    }
+    
+    // MARK: - Methods
+    func updateQueryDate(queryDate: Date) {
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = GlobalConstants.ApodDateFormat
+        let dateString = dateFormatter.string(from: queryDate)
+        self.queryDate = dateString as NSString
+    }
+    
+    func updateResponse(ApiResponse:APIServiceResponse) {
+        
+        self.date = ApiResponse.date
+        self.title = ApiResponse.title
+        self.explanation = ApiResponse.explanation
+        self.url = ApiResponse.url
+        if(ApiResponse.media_type == GlobalConstants.MediaTypeImage) {
+            self.media_type = .image
+        }else {
+            self.media_type = .video
         }
     }
     

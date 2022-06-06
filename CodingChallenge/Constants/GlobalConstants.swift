@@ -9,7 +9,7 @@ import Foundation
 
 struct GlobalConstants {
     
-    static let API = "https://api.nasa.gov/planetary/apod?api_key=FyaHWmjiWRDSS6uZixihHjRSlD124L5D91S6o98d"
+    static let API = "https://api.nasa.gov/planetary/apod?api_key=bM80szASZhvdTzr7czWd7FWKFP425WLuTbDLubNS"
     
     static let NASAText = "NASA Image of the Day"
     static let ApodDateFormat = "yyyy-MM-dd"
@@ -28,31 +28,31 @@ struct GlobalConstants {
     }
     
     static func getApodBaseURL() -> String {
-            
-            let config = getConfig()
-            return config?["BASE_URL"] as? String ?? ""
-        }
+        
+        let config = getConfig()
+        return config?["BASE_URL"] as? String ?? ""
+    }
     
     static func getAPIKey() -> String {
-            
-            let config = getConfig()
-            return config?["APOD_KEY"] as? String ?? ""
-        }
+        
+        let config = getConfig()
+        return config?["APOD_KEY"] as? String ?? ""
+    }
     
     static func getConfig() -> [String: Any]? {
-            
-            var config: [String: Any]?
-            
-            if let infoPlistPath = Bundle.main.url(forResource: "Info", withExtension: "plist") {
-                do {
-                    let infoPlistData = try Data(contentsOf: infoPlistPath)
-                    if let dict = try PropertyListSerialization.propertyList(from: infoPlistData, options: [], format: nil) as? [String: Any] {
-                        config = dict
-                    }
-                } catch {
-                    print(error)
+        
+        var config: [String: Any]?
+        
+        if let infoPlistPath = Bundle.main.url(forResource: "Info", withExtension: "plist") {
+            do {
+                let infoPlistData = try Data(contentsOf: infoPlistPath)
+                if let dict = try PropertyListSerialization.propertyList(from: infoPlistData, options: [], format: nil) as? [String: Any] {
+                    config = dict
                 }
+            } catch {
+                print(error)
             }
-            return config
         }
+        return config
+    }
 }

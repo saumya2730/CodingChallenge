@@ -18,6 +18,7 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var textFieldDate: UITextField!
     @IBOutlet weak var btnAddToFav: UIButton!
     
+    // MARK: - Variables
     let datePicker = UIDatePicker()
     let activityIndicator = UIActivityIndicatorView(style: .large)
     private var apiServiceModel = ApiHomeViewModel()
@@ -33,6 +34,7 @@ class HomeViewController: UIViewController {
         getApod(date: Date())
     }
     
+    // MARK: - IBAction
     @IBAction func btnAddToFav(_ sender: Any) {
         if isActive {
             apiServiceModel.removeFromFav()
@@ -44,12 +46,25 @@ class HomeViewController: UIViewController {
             isActive = true
             btnAddToFav.setImage(UIImage(named: "FavSelected"), for: .normal)
             print("Added to Favorites")
-    }
+        }
     }
     
+    // MARK: - Objective C Functions
+    @objc func dateChange(datePicker: UIDatePicker) {
+        textFieldDate.resignFirstResponder()
+        textFieldDate.text = formatDate(date: datePicker.date)
+        self.view.endEditing(true)
+        getApod(date: datePicker.date)
+    }
     
+    @objc func formatDate(date: Date) -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+        return formatter.string(from: date)
+    }
+    
+    // MARK: - Methods
     func createDatePicker() {
-        
         datePicker.datePickerMode = .date
         datePicker.addTarget(self, action: #selector(dateChange(datePicker:)), for: UIControl.Event.valueChanged)
         datePicker.frame.size = CGSize(width: 0, height: 300)
@@ -58,24 +73,6 @@ class HomeViewController: UIViewController {
         
         textFieldDate.inputView = datePicker
         textFieldDate.text = formatDate(date: Date())
-        
-        
-    }
-    
-    @objc func dateChange(datePicker: UIDatePicker) {
-        textFieldDate.resignFirstResponder()
-        textFieldDate.text = formatDate(date: datePicker.date)
-        self.view.endEditing(true)
-        
-        getApod(date: datePicker.date)
-        
-    }
-    
-    @objc func formatDate(date: Date) -> String {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd"
-        return formatter.string(from: date)
-        
     }
     
     func getApod(date:Date) {
@@ -101,26 +98,24 @@ class HomeViewController: UIViewController {
         
         btnAddToFav.setImage(apiServiceModel.getFavSelectionStatus() ? UIImage(named: "FavSelected"): UIImage(named: "FavUnselected") , for: .normal)
         isActive = apiServiceModel.getFavSelectionStatus()
-            
-            lblTitle.text = apiServiceModel.title
-            lblExplanation.text = apiServiceModel.explanation
-            textFieldDate.text = apiServiceModel.date
-            lblDate.text = apiServiceModel.date
-            if (apiServiceModel.media_type == GlobalConstants.MediaType.image) {
-                imageView.loadImage(withUrl: apiServiceModel.url ?? "")
-            }else {
-                imageView.image = UIImage(named: GlobalConstants.NoImage)
-                //Or Code for Play Video if have direct video URL
-            }
-            
+        
+        lblTitle.text = apiServiceModel.title
+        lblExplanation.text = apiServiceModel.explanation
+        textFieldDate.text = apiServiceModel.date
+        lblDate.text = apiServiceModel.date
+        if (apiServiceModel.media_type == GlobalConstants.MediaType.image) {
+            imageView.loadImage(withUrl: apiServiceModel.url ?? "")
+        }else {
+            imageView.image = UIImage(named: GlobalConstants.NoImage)
+            //Or Code for Play Video if have direct video URL
+        }
     }
-    
     //Show Error Alert
     func showAlert(error: String?) {
         
-            let alert = UIAlertController(title: GlobalConstants.ErrorAlertTitle, message: error, preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: GlobalConstants.OkAlertTitle, style: .default, handler: nil))
-            present(alert, animated: true)
+        let alert = UIAlertController(title: GlobalConstants.ErrorAlertTitle, message: error, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: GlobalConstants.OkAlertTitle, style: .default, handler: nil))
+        present(alert, animated: true)
     }
     
     

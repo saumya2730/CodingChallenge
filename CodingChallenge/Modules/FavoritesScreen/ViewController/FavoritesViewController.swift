@@ -9,32 +9,33 @@ import UIKit
 
 class FavoritesViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
     
-    var favoritesArray: [APIServiceResponse] = []
-    
+    // MARK: - IBOutlets
     @IBOutlet weak var myCollectionView: UICollectionView!
     
+    // MARK: - Variables
+    var favoritesArray: [APIServiceResponse] = []
     
+    // MARK: - viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
         
         myCollectionView.dataSource = self
         myCollectionView.delegate = self
-        //        myCollectionView.register(MyCellCollectionViewCell.self, forCellWithReuseIdentifier: "MyCellCollectionViewCell")
+        // myCollectionView.register(MyCellCollectionViewCell.self, forCellWithReuseIdentifier: "MyCellCollectionViewCell")
         
-        //        myCollectionView?.register(UINib(nibName: "MyCellCollectionViewCell", bundle: .main), forCellWithReuseIdentifier: "MyCellCollectionViewCell")
+        // myCollectionView?.register(UINib(nibName: "MyCellCollectionViewCell", bundle: .main), forCellWithReuseIdentifier: "MyCellCollectionViewCell")
         myCollectionView.register(MyCellCollectionViewCell.nib(), forCellWithReuseIdentifier: "MyCellCollectionViewCell")
         myCollectionView.backgroundColor = UIColor.white
-        myCollectionView.layer.cornerRadius = 2.0
-        myCollectionView.layer.shadowOpacity = 5.0
+        
     }
     
+    // MARK: - viewWillAppear
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         loadListOfImages()
     }
     
-    
-    
+    // MARK: - Methods
     func loadListOfImages() {
         if let oldData = UserDefaults.standard.value(forKey: favoritesKey) as? Data, let oldDataArray = try? JSONDecoder().decode([APIServiceResponse].self, from: oldData){
             favoritesArray = oldDataArray
@@ -43,7 +44,7 @@ class FavoritesViewController: UIViewController, UICollectionViewDataSource, UIC
         
     }
     
-    
+    // MARK: - CollectionViewMethods
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return favoritesArray.count
     }
@@ -56,4 +57,5 @@ class FavoritesViewController: UIViewController, UICollectionViewDataSource, UIC
         
         return UICollectionViewCell()
     }
+    
 }

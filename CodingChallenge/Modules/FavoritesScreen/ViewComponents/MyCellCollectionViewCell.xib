@@ -4,7 +4,6 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -20,18 +19,18 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pfd-LT-814" userLabel="contentView">
                         <rect key="frame" x="0.0" y="44" width="144" height="120"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Sb7-yg-Rom">
-                                <rect key="frame" x="22" y="10" width="100" height="100"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Sb7-yg-Rom">
+                                <rect key="frame" x="0.0" y="10" width="144" height="100"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="100" id="QfY-HT-6DK"/>
-                                    <constraint firstAttribute="width" constant="100" id="oPH-3f-1Ln"/>
+                                    <constraint firstAttribute="height" constant="100" id="687-rA-Kre"/>
+                                    <constraint firstAttribute="height" constant="100" id="Jci-qG-NwD"/>
                                 </constraints>
                             </imageView>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="Sb7-yg-Rom" firstAttribute="centerX" secondItem="pfd-LT-814" secondAttribute="centerX" id="F1e-xy-yfH"/>
-                            <constraint firstItem="Sb7-yg-Rom" firstAttribute="centerY" secondItem="pfd-LT-814" secondAttribute="centerY" id="oQl-Fb-I6r"/>
+                            <constraint firstItem="Sb7-yg-Rom" firstAttribute="centerY" secondItem="pfd-LT-814" secondAttribute="centerY" id="lyW-Qe-m1G"/>
+                            <constraint firstItem="Sb7-yg-Rom" firstAttribute="centerX" secondItem="pfd-LT-814" secondAttribute="centerX" id="wWB-gM-JMP"/>
                         </constraints>
                     </view>
                 </subviews>
@@ -50,9 +49,4 @@
             <point key="canvasLocation" x="31.884057971014496" y="36.160714285714285"/>
         </collectionViewCell>
     </objects>
-    <resources>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-    </resources>
 </document>

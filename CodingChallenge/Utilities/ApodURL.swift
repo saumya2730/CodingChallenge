@@ -13,6 +13,9 @@ struct ApiEndpoints {
     
     init(date:String) {
         self.apodURL = "\(GlobalConstants.API)&date=\(date)" //"https://\(GlobalConstants.getApodBaseURL())/planetary/apod?api_key=\(GlobalConstants.getAPIKey())&date=\(date)"
+        
+        
+        // Change key from Global Constants
     }
     
 }

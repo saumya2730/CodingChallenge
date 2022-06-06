@@ -1,10 +1,10 @@
 //
 //  Config.xcconfig
-//  NasaApod
+//  CodingChallenge
 //
-//  Created by Vishal on 8/1/2022.
+//  Created by 01HW1928584 on 05/06/22.
 //
 
- APOD_KEY = Enk4mcdh0ikHsd5SALdi9yQul3xFc7BK3HgnYXp9
+ APOD_KEY = FyaHWmjiWRDSS6uZixihHjRSlD124L5D91S6o98d
  BASE_URL = api.nasa.gov
 
